@@ -2,10 +2,13 @@ name: Test GitHub Actions
 
 on:
   push:
-    branches: [ master, main ]  # Ajoute 'master' ici
-
+    branches: 
+      - master
+      - main
   pull_request:
-    branches: [ master, main ]
+    branches: 
+      - master
+      - main
 
 jobs:
   lint:
@@ -29,4 +32,4 @@ jobs:
 
     - name: Run Pylint
       run: |
-        find . -name "*.py" | xargs pylint
+        find . -name "*.py" -print0 | xargs -0 pylint  # Amélioration de la commande find + xargs
