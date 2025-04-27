@@ -1,4 +1,4 @@
-name: Deploy Workflow
+name: build Workflow
 
 on:
   push:
