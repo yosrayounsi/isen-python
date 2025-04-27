@@ -26,9 +26,9 @@ jobs:
 
       - name: Run Pylint
         run: |
-          pylint --score=7 manage.py --disable=C,R0801,W
-          pylint --score=7 mixin.py --disable=C,R0903,W
-          pylint --score=7 get_user.py --disable=C,R,W
+          pylint --fail-under=7 manage.py --disable=C,R0801,W
+          pylint --fail-under=7 mixin.py --disable=C,R0903,W
+          pylint --fail-under=7 get_user.py --disable=C,R,W
         
       - name: Build Python project (if needed)
         run: |
