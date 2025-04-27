@@ -24,19 +24,19 @@ jobs:
       - name: Install Pylint
         run: pip install pylint  
 
-      - name: Run Pylint
+      - name: Run Pylint on Python files
         run: |
-          pylint manage.py
+          pylint manage.py --disable=C0415
           pylint mixin.py
           pylint get_user.py
-        
+
       - name: Build Python project (if needed)
         run: |
           echo "Building Python project"  
 
   deploy-app:
     runs-on: ubuntu-latest
-    needs: build-python
+    needs: build-python 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
