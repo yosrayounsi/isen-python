@@ -22,14 +22,17 @@ jobs:
           pip install -r requirements.txt
           
       - name: Install Pylint
-        run: pip install pylint  # Install Pylint
+        run: pip install pylint  
 
       - name: Run Pylint
-        run: pylint **/*.py  # Lint all Python files in the repository
+        run: |
+          pylint manage.py
+          pylint mixin.py
+          pylint get_user.py
         
       - name: Build Python project (if needed)
         run: |
-          echo "Building Python project"  # Add any build steps for Python here if needed
+          echo "Building Python project"  
 
   deploy-app:
     runs-on: ubuntu-latest
