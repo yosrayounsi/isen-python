@@ -33,9 +33,15 @@ jobs:
 
       - name: Install Hadolint
         run: |
-          # Install Hadolint by downloading the latest binary
+          # Download Hadolint binary
           curl -sSL https://github.com/hadolint/hadolint/releases/download/v2.9.0/hadolint-linux-amd64 -o /usr/local/bin/hadolint
+          # Verify download
+          ls -l /usr/local/bin/hadolint
+          file /usr/local/bin/hadolint
+          # Set executable permissions
           chmod +x /usr/local/bin/hadolint
+          # Verify it's executable
+          hadolint --version
 
       - name: Lint Dockerfile
         run: hadolint Dockerfile
