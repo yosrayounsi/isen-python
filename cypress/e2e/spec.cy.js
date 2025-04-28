@@ -1,6 +1,6 @@
 describe('Create and connect to an account', () => {
     it('Visits the Oc commerce site', () => {
-      cy.visit('/home')
+      cy.visit('/')
   
       // User is able to create an account an to be redirect to login pages
   
@@ -30,7 +30,7 @@ describe('Create and connect to an account', () => {
     it('Connect to OC commerce and put in favourite', () => {
   
       // In this test you should load the home url and connect with the previous account
-      cy.visit('/home')
+      cy.visit('/')
       cy.contains('LOGIN').click()
       cy.get('[id^=your_name]').type('fakeuser')
       cy.get('[id^=your_pass]').type('1hstesh<23456789')
@@ -66,7 +66,7 @@ describe('Create and connect to an account', () => {
   describe('Filter the products', () => {
     it('restrict the price between 20 and 30', () => {
       
-      cy.visit('/home')
+      cy.visit('/')
       cy.get('input[id^=min_price]').type('20')
       cy.get('input[id^=max_price]').type('30')
       cy.get('button[id^=filter]').click()
@@ -84,7 +84,7 @@ describe('Create and connect to an account', () => {
   describe('ascendant, descendant sorting', () => {
     it('we will verify if the products are sorted', () => {
   
-      cy.visit('/home')
+      cy.visit('/')
       const pricesAsc = []
   
       cy.get('#form-filter').select('asc')
