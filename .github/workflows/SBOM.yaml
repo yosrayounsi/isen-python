@@ -44,7 +44,7 @@ jobs:
         uses: anchore/sbom-action@v0.15.0
         with:
           path: "."
-          output-file: "sbom_syft_json"
+          output-file: "sbomsyftjson"
           format: "syft-json"
 
       - name: Upload SBOM Artifact
