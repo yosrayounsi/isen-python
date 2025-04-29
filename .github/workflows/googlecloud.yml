@@ -37,11 +37,11 @@ jobs:
 
       - name: Pull image from Docker Hub
         run: |
-          docker pull ${{ secrets.DOCKER_USERNAME }}/myapp:dev-${{ github.sha }}  
+          docker pull ${{ secrets.DOCKER_USERNAME }}/my-app:dev-${{ github.sha }}  
 
       - name: Tag Docker image for Artifact Registry
         run: |
-          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/myapp:dev-${{ github.sha }} ${{ env.REGION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/python-app:v${{ github.run_number }}
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/my-app:dev-${{ github.sha }} ${{ env.REGION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/python-app:v${{ github.run_number }}
 
   
       - name: Push Docker image to Artifact Registry
