@@ -33,15 +33,15 @@ jobs:
           gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
 
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ vars.DOCKERHUB_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Pull image from Docker Hub
         run: |
-          docker pull ${{ vars.DOCKERHUB_USERNAME }}/myapp:dev-${{ github.sha }}  
+          docker pull ${{ secrets.DOCKER_USERNAME }}/myapp:dev-${{ github.sha }}  
 
       - name: Tag Docker image for Artifact Registry
         run: |
-          docker tag ${{ vars.DOCKERHUB_USERNAME }}/myapp:dev-${{ github.sha }} ${{ env.REGION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/python-app:v${{ github.run_number }}
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/myapp:dev-${{ github.sha }} ${{ env.REGION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/python-app:v${{ github.run_number }}
 
   
       - name: Push Docker image to Artifact Registry
