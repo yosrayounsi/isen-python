@@ -1,4 +1,4 @@
-name: Docker for Artifact Registry
+name: Configure Docker for Artifact Registry
 
 on:
   workflow_dispatch: {}
@@ -6,6 +6,8 @@ on:
     workflows: ["Docker"] 
     types:
       - completed
+    branches:
+      - main
 
 jobs:
   configure-docker:
@@ -31,15 +33,15 @@ jobs:
           gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
 
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ vars.DOCKER_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ vars.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Pull image from Docker Hub
         run: |
-          docker pull ${{ vars.DOCKER_USERNAME }}/myapp:dev-${{ github.sha }}  
+          docker pull ${{ vars.DOCKERHUB_USERNAME }}/myapp:dev-${{ github.sha }}  
 
       - name: Tag Docker image for Artifact Registry
         run: |
-          docker tag ${{ vars.DOCKER_USERNAME }}/myapp:dev-${{ github.sha }} ${{ env.REGION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/python-app:v${{ github.run_number }}
+          docker tag ${{ vars.DOCKERHUB_USERNAME }}/myapp:dev-${{ github.sha }} ${{ env.REGION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.ARTIFACT_REPOSITORY }}/python-app:v${{ github.run_number }}
 
   
       - name: Push Docker image to Artifact Registry
@@ -61,5 +63,5 @@ jobs:
           
     env:
       REGION: europe-west9
-      GCP_PROJECT_ID: chatt-3b6c1  
-      ARTIFACT_REPOSITORY: isen-python   
+      GCP_PROJECT_ID: chatt-3b6c1
+      ARTIFACT_REPOSITORY: isen-python    
