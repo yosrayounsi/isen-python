@@ -9,8 +9,8 @@ on:
       - main
 
 env:
-  REGION: europe-west1
-  DOCKER_IMAGE: darklyx/myapp:dev-${{ github.sha }}
+  REGION: europe-west9
+  DOCKER_IMAGE: yosrayounsi/python-app:dev-${{ github.sha }}
   GCP_IMAGE: europe-west9-docker.pkg.dev/chatt-3b6c1/isen-python/python-app
 
 jobs:
