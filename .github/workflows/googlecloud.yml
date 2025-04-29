@@ -6,8 +6,6 @@ on:
     workflows: ["Docker"] 
     types:
       - completed
-    branches:
-      - main
 
 jobs:
   configure-docker:
