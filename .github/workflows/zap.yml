@@ -26,13 +26,13 @@ jobs:
       - name: Run application container
         run: |
           docker run -d --name python-app-test --network zapnet -p 8000:8000 python-app
-          sleep 15  # attendre le démarrage
+          sleep 15
 
       - name: Run ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.14.0
         with:
           target: 'http://python-app-test:8000'
-          docker_name: 'owasp/zap2docker-stable'
+          docker_name: 'owasp/zap2docker-weekly'
           fail_action: false
           artifact_name: zap-report
 
