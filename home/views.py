@@ -16,6 +16,19 @@ class HomeView(ListView):
     '''
     template_name = 'home.html'
     model = Product
+    context_object_name = 'object_list'
 
-    def get(self, request):
-        return super().get(request)
+    def get_queryset(self):
+        """
+        Ajout de la features filter by price
+        """
+        queryset = Product.objects.all()
+        min_price = self.request.GET.get('min_price')
+        max_price = self.request.GET.get('max_price')
+
+        if min_price:
+            queryset = queryset.filter(price__gte=min_price)
+        if max_price:
+            queryset = queryset.filter(price__lte=max_price)
+
+        return queryset
