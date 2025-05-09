@@ -31,6 +31,18 @@
         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
         <div class="divider-custom-line"></div>
       </div>
+
+      <!-- Filter by price-->
+      <form method="get" class="mb-4 d-flex justify-content-center gap-2">
+        <div class="form-group">
+          <input type="number" name="min_price" class="form-control" placeholder="Prix min" step="0.01" value="{{ request.GET.min_price }}">
+        </div>
+        <div class="form-group mx-2">
+          <input type="number" name="max_price" class="form-control" placeholder="Prix max" step="0.01" value="{{ request.GET.max_price }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Filtrer</button>
+      </form>
+
       <!-- Portfolio Grid Items-->
       <div class="row justify-content-center">
         {% for product in object_list %}
